@@ -8,8 +8,359 @@
       name="description"
       content="송내고등학교에 다니며 웹 개발을 배우고 있는 김용겸의 포트폴리오입니다."
     />
-    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      :root {
+        color-scheme: dark;
+        --text: #e8f4ff;
+        --muted: #9eb3d1;
+        --blue: #39a9ff;
+        --cyan: #66e3ff;
+        --border: rgba(57, 169, 255, 0.45);
+        --glow:
+          0 0 12px rgba(57, 169, 255, 0.3),
+          0 0 30px rgba(57, 169, 255, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-height: 100vh;
+        color: var(--text);
+        background:
+          radial-gradient(
+            ellipse at 50% 0%,
+            rgba(13, 74, 145, 0.25),
+            transparent 42%
+          ),
+          linear-gradient(180deg, #050816 0%, #080d1c 55%, #050816 100%);
+        font-family: Arial, "Noto Sans KR", sans-serif;
+        line-height: 1.7;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      a:focus-visible {
+        outline: 2px solid var(--cyan);
+        outline-offset: 4px;
+        border-radius: 4px;
+      }
+
+      .container {
+        width: min(1100px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      /* 상단 메뉴 */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        border-bottom: 1px solid var(--border);
+        background: rgba(5, 8, 22, 0.88);
+        backdrop-filter: blur(12px);
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+      }
+
+      .nav {
+        display: flex;
+        min-height: 72px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .logo {
+        color: var(--cyan);
+        font-size: 1.25rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-shadow: 0 0 12px rgba(102, 227, 255, 0.65);
+      }
+
+      .menu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        color: var(--muted);
+      }
+
+      .menu a {
+        transition:
+          color 0.2s ease,
+          text-shadow 0.2s ease;
+      }
+
+      .menu a:hover {
+        color: var(--cyan);
+        text-shadow: 0 0 10px rgba(102, 227, 255, 0.8);
+      }
+
+      /* 첫 화면 */
+      .hero {
+        padding: 96px 0 76px;
+      }
+
+      .hero-inner {
+        display: grid;
+        grid-template-columns: 1.5fr 0.9fr;
+        align-items: center;
+        gap: 40px;
+      }
+
+      .badge,
+      .project-tag {
+        display: inline-block;
+        padding: 7px 13px;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        color: var(--cyan);
+        background: rgba(24, 107, 190, 0.12);
+        box-shadow: 0 0 14px rgba(57, 169, 255, 0.16);
+        font-size: 0.9rem;
+        font-weight: 700;
+      }
+
+      .badge {
+        margin-bottom: 18px;
+      }
+
+      .hero h1 {
+        margin-bottom: 18px;
+        font-size: clamp(2.2rem, 5vw, 4rem);
+        line-height: 1.2;
+      }
+
+      .hero h1 span {
+        color: var(--cyan);
+        text-shadow: 0 0 18px rgba(102, 227, 255, 0.5);
+      }
+
+      .lead {
+        max-width: 620px;
+        color: var(--muted);
+        font-size: 1.08rem;
+      }
+
+      .hero-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 28px;
+      }
+
+      /* 네온 버튼 */
+      .primary-btn,
+      .secondary-btn {
+        display: inline-block;
+        padding: 12px 21px;
+        border: 1px solid var(--blue);
+        border-radius: 10px;
+        font-weight: 700;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease,
+          background 0.2s ease;
+      }
+
+      .primary-btn {
+        color: #03101d;
+        background: linear-gradient(135deg, var(--cyan), var(--blue));
+        box-shadow: 0 0 12px rgba(57, 169, 255, 0.48);
+      }
+
+      .secondary-btn {
+        color: var(--cyan);
+        background: rgba(10, 25, 48, 0.8);
+      }
+
+      .primary-btn:hover,
+      .secondary-btn:hover {
+        transform: translateY(-2px);
+        box-shadow:
+          0 0 16px rgba(57, 169, 255, 0.7),
+          0 0 32px rgba(57, 169, 255, 0.25);
+      }
+
+      .secondary-btn:hover {
+        background: rgba(20, 67, 112, 0.45);
+      }
+
+      /* 프로필 카드 */
+      .profile-card,
+      .project-card,
+      .contact-box {
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        background: linear-gradient(
+          145deg,
+          rgba(16, 28, 53, 0.96),
+          rgba(7, 13, 29, 0.96)
+        );
+        box-shadow: var(--glow);
+      }
+
+      .profile-card {
+        padding: 30px;
+        text-align: center;
+      }
+
+      .profile-card h2 {
+        margin-bottom: 8px;
+        color: var(--cyan);
+        text-shadow: 0 0 12px rgba(102, 227, 255, 0.4);
+      }
+
+      .profile-card p {
+        color: var(--muted);
+      }
+
+      /* 섹션 */
+      .section {
+        padding: 82px 0;
+      }
+
+      .alt {
+        border-top: 1px solid rgba(57, 169, 255, 0.12);
+        border-bottom: 1px solid rgba(57, 169, 255, 0.12);
+        background: rgba(9, 20, 40, 0.48);
+      }
+
+      .section-title {
+        margin-bottom: 20px;
+        color: var(--cyan);
+        font-size: clamp(1.8rem, 3vw, 2.5rem);
+        text-align: center;
+        text-shadow: 0 0 14px rgba(57, 169, 255, 0.35);
+      }
+
+      .section-text {
+        max-width: 780px;
+        margin: 0 auto;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      /* 프로젝트와 활동 카드 */
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 22px;
+        margin-top: 30px;
+      }
+
+      .project-card {
+        padding: 25px;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-4px);
+        box-shadow:
+          0 0 16px rgba(57, 169, 255, 0.42),
+          0 0 36px rgba(57, 169, 255, 0.18);
+      }
+
+      .project-tag {
+        margin-bottom: 14px;
+        font-size: 0.82rem;
+      }
+
+      .project-card h3 {
+        margin-bottom: 10px;
+        font-size: 1.35rem;
+      }
+
+      .project-card p {
+        margin-bottom: 18px;
+        color: var(--muted);
+      }
+
+      /* 연락처 */
+      .contact-box {
+        max-width: 700px;
+        margin: 28px auto 0;
+        padding: 25px;
+        text-align: center;
+      }
+
+      .contact-box p {
+        margin: 10px 0;
+        color: var(--muted);
+        overflow-wrap: anywhere;
+      }
+
+      .contact-box a {
+        color: var(--cyan);
+        text-decoration: underline;
+        text-decoration-color: rgba(102, 227, 255, 0.55);
+        text-underline-offset: 3px;
+      }
+
+      .contact-box a:hover {
+        text-shadow: 0 0 10px rgba(102, 227, 255, 0.75);
+      }
+
+      /* 하단 */
+      .site-footer {
+        padding: 24px 0;
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+        text-align: center;
+      }
+
+      /* 모바일 화면 */
+      @media (max-width: 760px) {
+        .hero-inner {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          padding: 62px 0;
+        }
+
+        .section {
+          padding: 62px 0;
+        }
+
+        .nav {
+          flex-direction: column;
+          justify-content: center;
+          padding: 14px 0;
+        }
+
+        .menu {
+          gap: 10px 16px;
+          font-size: 0.92rem;
+        }
+      }
+
+      /* 움직임을 줄이는 설정을 사용하는 방문자 배려 */
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
   </head>
+
   <body>
     <header class="site-header">
       <div class="container nav">
@@ -141,3 +492,4 @@
     </footer>
   </body>
 </html>
+```**`index.html` 파일의 기존 내용을 전부 지우고 이 코드 전체를 붙여넣은 뒤, `Commit changes`를 누르면 됩니다.**

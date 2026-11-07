@@ -1,2 +1,2 @@
-# Friendly-Repository-1
+# Yonggyeom's portfolio
 my-portfolio

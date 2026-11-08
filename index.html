@@ -13,8 +13,6 @@
     <style>
       :root {
         color-scheme: dark;
-        --background: #070b16;
-        --surface: rgba(13, 22, 42, 0.82);
         --text: #edf6ff;
         --muted: #a4b5cd;
         --blue: #4aa8ff;
@@ -81,6 +79,7 @@
         margin-inline: auto;
       }
 
+      /* 상단 메뉴 */
       .site-header {
         position: sticky;
         z-index: 20;
@@ -104,6 +103,7 @@
         font-weight: 900;
         letter-spacing: 0.16em;
         text-shadow: 0 0 18px rgba(114, 227, 255, 0.55);
+        animation: logo-glow 3s ease-in-out infinite alternate;
       }
 
       .menu {
@@ -131,13 +131,14 @@
         text-shadow: 0 0 12px rgba(114, 227, 255, 0.6);
       }
 
+      /* 첫 화면 */
       .hero {
         position: relative;
         isolation: isolate;
         padding: 110px 0 92px;
       }
 
-      /* 회전하는 네온 원형 장식 */
+      /* 첫 화면의 회전 네온 원 */
       .hero::after {
         position: absolute;
         z-index: -1;
@@ -164,12 +165,6 @@
         content: "";
         pointer-events: none;
         animation: neon-orbit 8s linear infinite;
-      }
-
-      @keyframes neon-orbit {
-        to {
-          transform: rotate(360deg);
-        }
       }
 
       .hero-inner {
@@ -203,6 +198,7 @@
         border-radius: 50%;
         background: #64f0ba;
         box-shadow: 0 0 12px rgba(100, 240, 186, 0.8);
+        animation: status-pulse 1.8s ease-in-out infinite;
       }
 
       .hero h1 {
@@ -216,6 +212,7 @@
       .hero h1 span {
         color: var(--cyan);
         text-shadow: 0 0 28px rgba(67, 183, 255, 0.42);
+        animation: text-glow 3s ease-in-out infinite alternate;
       }
 
       .hero-description {
@@ -232,6 +229,7 @@
         margin-top: 30px;
       }
 
+      /* 버튼 */
       .button {
         display: inline-flex;
         min-height: 46px;
@@ -258,6 +256,7 @@
         color: #04111e;
         background: linear-gradient(135deg, var(--cyan), var(--blue));
         box-shadow: 0 0 18px rgba(57, 169, 255, 0.25);
+        animation: button-glow 3s ease-in-out infinite alternate;
       }
 
       .button-secondary {
@@ -265,11 +264,15 @@
         background: rgba(9, 20, 40, 0.82);
       }
 
+      /* 프로필 카드 */
       .profile-card,
       .content-card {
         border: 1px solid var(--line);
-        background:
-          linear-gradient(145deg, rgba(16, 29, 54, 0.95), rgba(8, 15, 30, 0.95));
+        background: linear-gradient(
+          145deg,
+          rgba(16, 29, 54, 0.95),
+          rgba(8, 15, 30, 0.95)
+        );
         box-shadow: var(--glow);
       }
 
@@ -292,6 +295,7 @@
         content: "";
         filter: blur(35px);
         transform: translateX(-50%);
+        animation: profile-light 4s ease-in-out infinite alternate;
       }
 
       .profile-mark {
@@ -310,6 +314,7 @@
           inset 0 0 20px rgba(57, 169, 255, 0.1);
         font-size: 1.7rem;
         font-weight: 900;
+        animation: profile-mark-glow 3s ease-in-out infinite alternate;
       }
 
       .profile-card h2 {
@@ -324,6 +329,7 @@
         color: var(--muted);
       }
 
+      /* 섹션 */
       .section {
         padding: 82px 0;
       }
@@ -366,6 +372,7 @@
         text-align: center;
       }
 
+      /* 기술 */
       .skill-list {
         display: flex;
         flex-wrap: wrap;
@@ -381,8 +388,14 @@
         color: var(--cyan);
         background: rgba(25, 74, 124, 0.2);
         font-weight: 700;
+        animation: skill-glow 3.5s ease-in-out infinite alternate;
       }
 
+      .skill-item:nth-child(2) {
+        animation-delay: 0.7s;
+      }
+
+      /* 프로젝트와 활동 카드 */
       .project-grid,
       .activity-grid {
         display: grid;
@@ -403,16 +416,42 @@
           transform 0.22s ease,
           border-color 0.22s ease,
           box-shadow 0.22s ease;
+        animation: card-glow 4s ease-in-out infinite alternate;
       }
 
+      /*
+        카드 테두리의 네온 빛이 카드 바깥을 따라 회전합니다.
+        마스크로 가운데를 비워 테두리 부분만 보이게 합니다.
+      */
       .content-card::before {
         position: absolute;
-        top: 0;
-        left: 26px;
-        width: 54px;
-        height: 2px;
-        background: linear-gradient(90deg, var(--cyan), transparent);
+        z-index: 0;
+        inset: 0;
+        padding: 1px;
+        border-radius: inherit;
+        background: conic-gradient(
+          from 0deg,
+          transparent 0deg 285deg,
+          var(--cyan) 315deg,
+          var(--blue) 335deg,
+          transparent 360deg
+        );
         content: "";
+        pointer-events: none;
+        -webkit-mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        animation: card-border-spin 5s linear infinite;
+      }
+
+      .content-card > * {
+        position: relative;
+        z-index: 1;
       }
 
       .content-card:hover {
@@ -421,12 +460,14 @@
         box-shadow:
           0 0 22px rgba(57, 169, 255, 0.24),
           0 16px 42px rgba(0, 0, 0, 0.2);
+        animation-play-state: paused;
       }
 
       .project-tag {
         margin-bottom: 16px;
         padding: 5px 11px;
         font-size: 0.78rem;
+        animation: tag-glow 3s ease-in-out infinite alternate;
       }
 
       .content-card h3 {
@@ -444,15 +485,16 @@
         margin-top: auto;
       }
 
+      /* 연락처 */
       .contact-card {
         max-width: 720px;
         margin: 0 auto;
         padding: 26px;
         border: 1px solid var(--line);
         border-radius: 18px;
-        background: var(--surface);
+        background: rgba(13, 22, 42, 0.82);
         box-shadow: var(--glow);
-        text-align: center;
+        animation: card-glow 4s ease-in-out infinite alternate;
       }
 
       .contact-card p {
@@ -472,6 +514,7 @@
         text-shadow: 0 0 12px rgba(114, 227, 255, 0.6);
       }
 
+      /* 하단 */
       .site-footer {
         padding: 24px 0;
         border-top: 1px solid var(--line);
@@ -484,6 +527,87 @@
         font-size: 0.9rem;
       }
 
+      /* 애니메이션 */
+      @keyframes neon-orbit {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes card-border-spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes status-pulse {
+        50% {
+          opacity: 0.55;
+          box-shadow: 0 0 4px rgba(100, 240, 186, 0.35);
+        }
+      }
+
+      @keyframes logo-glow {
+        to {
+          text-shadow:
+            0 0 8px rgba(114, 227, 255, 0.75),
+            0 0 25px rgba(74, 168, 255, 0.45);
+        }
+      }
+
+      @keyframes text-glow {
+        to {
+          text-shadow:
+            0 0 16px rgba(67, 183, 255, 0.55),
+            0 0 34px rgba(67, 183, 255, 0.28);
+        }
+      }
+
+      @keyframes button-glow {
+        to {
+          box-shadow:
+            0 0 24px rgba(57, 169, 255, 0.42),
+            0 0 42px rgba(57, 169, 255, 0.16);
+        }
+      }
+
+      @keyframes profile-light {
+        to {
+          opacity: 0.65;
+          transform: translateX(-50%) scale(1.25);
+        }
+      }
+
+      @keyframes profile-mark-glow {
+        to {
+          box-shadow:
+            0 0 32px rgba(57, 169, 255, 0.42),
+            inset 0 0 24px rgba(57, 169, 255, 0.18);
+        }
+      }
+
+      @keyframes skill-glow {
+        to {
+          border-color: rgba(114, 227, 255, 0.55);
+          box-shadow: 0 0 16px rgba(57, 169, 255, 0.2);
+        }
+      }
+
+      @keyframes card-glow {
+        to {
+          box-shadow:
+            0 0 30px rgba(48, 147, 255, 0.24),
+            0 0 48px rgba(48, 147, 255, 0.08);
+        }
+      }
+
+      @keyframes tag-glow {
+        to {
+          box-shadow: 0 0 18px rgba(57, 169, 255, 0.26);
+        }
+      }
+
+      /* 모바일 */
       @media (max-width: 760px) {
         .nav {
           flex-direction: column;
@@ -528,16 +652,15 @@
         }
       }
 
+      /* 방문자가 움직임 줄이기를 설정한 경우 애니메이션 끄기 */
       @media (prefers-reduced-motion: reduce) {
         *,
         *::before,
         *::after {
           scroll-behavior: auto !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
           transition-duration: 0.01ms !important;
-        }
-
-        .hero::after {
-          animation: none;
         }
       }
     </style>
@@ -731,7 +854,7 @@
 
     <footer class="site-footer">
       <div class="container">
-        <p>© 2026 김용겸</p>
+        <p> 김용겸</p>
       </div>
     </footer>
   </body>

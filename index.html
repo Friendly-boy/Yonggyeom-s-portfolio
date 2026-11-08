@@ -3,47 +3,67 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>김용겸 | 포트폴리오</title>
     <meta
       name="description"
-      content="송내고등학교에 다니며 웹 개발을 배우고 있는 김용겸의 포트폴리오입니다."
+      content="AI와 함께 웹 프로젝트를 만들고 C언어와 Python을 배우는 김용겸의 포트폴리오입니다."
     />
+    <meta name="theme-color" content="#070b16" />
+    <title>김용겸 | 개발 포트폴리오</title>
 
     <style>
       :root {
         color-scheme: dark;
-        --text: #e8f4ff;
-        --muted: #9eb3d1;
-        --blue: #39a9ff;
-        --cyan: #66e3ff;
-        --border: rgba(57, 169, 255, 0.45);
-        --glow:
-          0 0 12px rgba(57, 169, 255, 0.3),
-          0 0 30px rgba(57, 169, 255, 0.12);
+        --background: #070b16;
+        --surface: rgba(13, 22, 42, 0.82);
+        --surface-strong: #0e1930;
+        --text: #edf6ff;
+        --muted: #a4b5cd;
+        --blue: #4aa8ff;
+        --cyan: #72e3ff;
+        --line: rgba(83, 176, 255, 0.28);
+        --glow: 0 0 24px rgba(48, 147, 255, 0.16);
+        --content-width: 1080px;
       }
 
-      * {
+      *,
+      *::before,
+      *::after {
         box-sizing: border-box;
-        margin: 0;
-        padding: 0;
       }
 
       html {
         scroll-behavior: smooth;
+        scroll-padding-top: 90px;
       }
 
       body {
+        min-width: 320px;
         min-height: 100vh;
+        margin: 0;
+        overflow-x: hidden;
         color: var(--text);
         background:
           radial-gradient(
-            ellipse at 50% 0%,
-            rgba(13, 74, 145, 0.25),
-            transparent 42%
+            ellipse at 50% -15%,
+            rgba(27, 105, 194, 0.3),
+            transparent 52%
           ),
-          linear-gradient(180deg, #050816 0%, #080d1c 55%, #050816 100%);
+          linear-gradient(180deg, #070b16, #090f1d 55%, #070b16);
         font-family: Arial, "Noto Sans KR", sans-serif;
         line-height: 1.7;
+      }
+
+      body::before {
+        position: fixed;
+        z-index: -1;
+        background-image:
+          linear-gradient(rgba(99, 174, 255, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(99, 174, 255, 0.035) 1px, transparent 1px);
+        background-size: 44px 44px;
+        content: "";
+        inset: 0;
+        mask-image: linear-gradient(to bottom, black, transparent 80%);
+        pointer-events: none;
       }
 
       a {
@@ -53,23 +73,22 @@
 
       a:focus-visible {
         outline: 2px solid var(--cyan);
-        outline-offset: 4px;
-        border-radius: 4px;
+        outline-offset: 5px;
+        border-radius: 6px;
       }
 
       .container {
-        width: min(1100px, calc(100% - 32px));
-        margin: 0 auto;
+        width: min(var(--content-width), calc(100% - 40px));
+        margin-inline: auto;
       }
 
       .site-header {
         position: sticky;
+        z-index: 20;
         top: 0;
-        z-index: 10;
-        border-bottom: 1px solid var(--border);
-        background: rgba(5, 8, 22, 0.88);
-        backdrop-filter: blur(12px);
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+        border-bottom: 1px solid var(--line);
+        background: rgba(7, 11, 22, 0.84);
+        backdrop-filter: blur(16px);
       }
 
       .nav {
@@ -77,149 +96,212 @@
         min-height: 72px;
         align-items: center;
         justify-content: space-between;
-        gap: 20px;
+        gap: 24px;
       }
 
       .logo {
         color: var(--cyan);
-        font-size: 1.25rem;
-        font-weight: 800;
-        letter-spacing: 0.12em;
-        text-shadow: 0 0 12px rgba(102, 227, 255, 0.65);
+        font-size: 1.08rem;
+        font-weight: 900;
+        letter-spacing: 0.16em;
+        text-shadow: 0 0 18px rgba(114, 227, 255, 0.55);
       }
 
       .menu {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
-        color: var(--muted);
+        align-items: center;
+        justify-content: flex-end;
+        gap: 8px;
       }
 
       .menu a {
+        padding: 8px 12px;
+        border-radius: 8px;
+        color: var(--muted);
+        font-size: 0.92rem;
         transition:
           color 0.2s ease,
+          background 0.2s ease,
           text-shadow 0.2s ease;
       }
 
       .menu a:hover {
         color: var(--cyan);
-        text-shadow: 0 0 10px rgba(102, 227, 255, 0.8);
+        background: rgba(59, 152, 255, 0.1);
+        text-shadow: 0 0 12px rgba(114, 227, 255, 0.6);
       }
 
       .hero {
-        padding: 96px 0 76px;
+        position: relative;
+        padding: 110px 0 92px;
+      }
+
+      .hero::after {
+        position: absolute;
+        z-index: -1;
+        top: 80px;
+        right: max(4%, calc((100% - var(--content-width)) / 2));
+        width: 280px;
+        height: 280px;
+        border: 1px solid rgba(75, 171, 255, 0.12);
+        border-radius: 50%;
+        box-shadow:
+          0 0 70px rgba(42, 128, 255, 0.12),
+          inset 0 0 50px rgba(42, 128, 255, 0.08);
+        content: "";
+        pointer-events: none;
       }
 
       .hero-inner {
         display: grid;
-        grid-template-columns: 1.5fr 0.9fr;
+        grid-template-columns: minmax(0, 1.45fr) minmax(250px, 0.75fr);
         align-items: center;
-        gap: 40px;
+        gap: 58px;
       }
 
-      .badge,
+      .eyebrow,
       .project-tag {
-        display: inline-block;
-        padding: 7px 13px;
-        border: 1px solid var(--border);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid var(--line);
         border-radius: 999px;
         color: var(--cyan);
-        background: rgba(24, 107, 190, 0.12);
-        box-shadow: 0 0 14px rgba(57, 169, 255, 0.16);
-        font-size: 0.9rem;
+        background: rgba(37, 115, 199, 0.12);
+        font-size: 0.84rem;
         font-weight: 700;
       }
 
-      .badge {
-        margin-bottom: 18px;
+      .eyebrow {
+        margin: 0 0 20px;
+        padding: 7px 13px;
+      }
+
+      .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #64f0ba;
+        box-shadow: 0 0 12px rgba(100, 240, 186, 0.8);
       }
 
       .hero h1 {
-        margin-bottom: 18px;
-        font-size: clamp(2.2rem, 5vw, 4rem);
-        line-height: 1.2;
+        max-width: 720px;
+        margin: 0;
+        font-size: clamp(2.6rem, 7vw, 5rem);
+        letter-spacing: -0.055em;
+        line-height: 1.1;
       }
 
       .hero h1 span {
         color: var(--cyan);
-        text-shadow: 0 0 18px rgba(102, 227, 255, 0.5);
+        text-shadow: 0 0 28px rgba(67, 183, 255, 0.42);
       }
 
-      .lead {
-        max-width: 620px;
+      .hero-description {
+        max-width: 650px;
+        margin: 22px 0 0;
         color: var(--muted);
         font-size: 1.08rem;
       }
 
-      .hero-buttons {
+      .hero-actions {
         display: flex;
         flex-wrap: wrap;
-        gap: 14px;
-        margin-top: 28px;
+        gap: 13px;
+        margin-top: 30px;
       }
 
-      .primary-btn,
-      .secondary-btn {
-        display: inline-block;
-        padding: 12px 21px;
+      .button {
+        display: inline-flex;
+        min-height: 46px;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 18px;
         border: 1px solid var(--blue);
         border-radius: 10px;
-        font-weight: 700;
+        font-weight: 800;
         transition:
           transform 0.2s ease,
           box-shadow 0.2s ease,
           background 0.2s ease;
       }
 
-      .primary-btn {
-        color: #03101d;
-        background: linear-gradient(135deg, var(--cyan), var(--blue));
-        box-shadow: 0 0 12px rgba(57, 169, 255, 0.48);
-      }
-
-      .secondary-btn {
-        color: var(--cyan);
-        background: rgba(10, 25, 48, 0.8);
-      }
-
-      .primary-btn:hover,
-      .secondary-btn:hover {
+      .button:hover {
         transform: translateY(-2px);
         box-shadow:
-          0 0 16px rgba(57, 169, 255, 0.7),
-          0 0 32px rgba(57, 169, 255, 0.25);
+          0 0 18px rgba(57, 169, 255, 0.4),
+          0 0 36px rgba(57, 169, 255, 0.13);
       }
 
-      .secondary-btn:hover {
-        background: rgba(20, 67, 112, 0.45);
+      .button-primary {
+        color: #04111e;
+        background: linear-gradient(135deg, var(--cyan), var(--blue));
+        box-shadow: 0 0 18px rgba(57, 169, 255, 0.25);
+      }
+
+      .button-secondary {
+        color: var(--cyan);
+        background: rgba(9, 20, 40, 0.82);
       }
 
       .profile-card,
-      .project-card,
-      .contact-box {
-        border: 1px solid var(--border);
-        border-radius: 18px;
-        background: linear-gradient(
-          145deg,
-          rgba(16, 28, 53, 0.96),
-          rgba(7, 13, 29, 0.96)
-        );
+      .content-card {
+        border: 1px solid var(--line);
+        background:
+          linear-gradient(145deg, rgba(16, 29, 54, 0.95), rgba(8, 15, 30, 0.95));
         box-shadow: var(--glow);
       }
 
       .profile-card {
+        position: relative;
         padding: 30px;
+        overflow: hidden;
+        border-radius: 22px;
         text-align: center;
       }
 
-      .profile-card h2 {
-        margin-bottom: 8px;
+      .profile-card::before {
+        position: absolute;
+        top: -60px;
+        left: 50%;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: rgba(56, 160, 255, 0.16);
+        content: "";
+        filter: blur(35px);
+        transform: translateX(-50%);
+      }
+
+      .profile-mark {
+        position: relative;
+        display: grid;
+        width: 82px;
+        height: 82px;
+        margin: 0 auto 18px;
+        place-items: center;
+        border: 1px solid rgba(114, 227, 255, 0.65);
+        border-radius: 24px;
         color: var(--cyan);
-        text-shadow: 0 0 12px rgba(102, 227, 255, 0.4);
+        background: rgba(30, 111, 190, 0.16);
+        box-shadow:
+          0 0 24px rgba(57, 169, 255, 0.22),
+          inset 0 0 20px rgba(57, 169, 255, 0.1);
+        font-size: 1.7rem;
+        font-weight: 900;
+      }
+
+      .profile-card h2 {
+        position: relative;
+        margin: 0 0 5px;
+        font-size: 1.45rem;
       }
 
       .profile-card p {
+        position: relative;
+        margin: 4px 0;
         color: var(--muted);
       }
 
@@ -227,116 +309,203 @@
         padding: 82px 0;
       }
 
-      .alt {
-        border-top: 1px solid rgba(57, 169, 255, 0.12);
-        border-bottom: 1px solid rgba(57, 169, 255, 0.12);
-        background: rgba(9, 20, 40, 0.48);
+      .section-alt {
+        border-block: 1px solid rgba(83, 176, 255, 0.13);
+        background: rgba(9, 18, 35, 0.48);
+      }
+
+      .section-heading {
+        margin-bottom: 34px;
+        text-align: center;
+      }
+
+      .section-kicker {
+        margin: 0 0 6px;
+        color: var(--blue);
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
       }
 
       .section-title {
-        margin-bottom: 20px;
-        color: var(--cyan);
-        font-size: clamp(1.8rem, 3vw, 2.5rem);
-        text-align: center;
-        text-shadow: 0 0 14px rgba(57, 169, 255, 0.35);
+        margin: 0;
+        color: var(--text);
+        font-size: clamp(1.9rem, 4vw, 2.7rem);
+        letter-spacing: -0.035em;
       }
 
-      .section-text {
-        max-width: 780px;
+      .section-title span {
+        color: var(--cyan);
+        text-shadow: 0 0 18px rgba(57, 169, 255, 0.35);
+      }
+
+      .section-copy {
+        max-width: 760px;
         margin: 0 auto;
         color: var(--muted);
         text-align: center;
       }
 
-      .project-grid {
+      .skill-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 26px;
+      }
+
+      .skill-item {
+        padding: 9px 16px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        color: var(--cyan);
+        background: rgba(25, 74, 124, 0.2);
+        font-weight: 700;
+      }
+
+      .project-grid,
+      .activity-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
         gap: 22px;
-        margin-top: 30px;
       }
 
-      .project-card {
-        padding: 25px;
+      .content-card {
+        position: relative;
+        display: flex;
+        min-height: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 26px;
+        overflow: hidden;
+        border-radius: 18px;
         transition:
-          transform 0.2s ease,
-          box-shadow 0.2s ease;
+          transform 0.22s ease,
+          border-color 0.22s ease,
+          box-shadow 0.22s ease;
       }
 
-      .project-card:hover {
-        transform: translateY(-4px);
+      .content-card::before {
+        position: absolute;
+        top: 0;
+        left: 26px;
+        width: 54px;
+        height: 2px;
+        background: linear-gradient(90deg, var(--cyan), transparent);
+        content: "";
+      }
+
+      .content-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(114, 227, 255, 0.6);
         box-shadow:
-          0 0 16px rgba(57, 169, 255, 0.42),
-          0 0 36px rgba(57, 169, 255, 0.18);
+          0 0 22px rgba(57, 169, 255, 0.24),
+          0 16px 42px rgba(0, 0, 0, 0.2);
       }
 
       .project-tag {
-        margin-bottom: 14px;
-        font-size: 0.82rem;
+        margin-bottom: 16px;
+        padding: 5px 11px;
+        font-size: 0.78rem;
       }
 
-      .project-card h3 {
-        margin-bottom: 10px;
+      .content-card h3 {
+        margin: 0 0 9px;
         font-size: 1.35rem;
+        line-height: 1.35;
       }
 
-      .project-card p {
-        margin-bottom: 18px;
+      .content-card p {
+        margin: 0 0 20px;
         color: var(--muted);
       }
 
-      .contact-box {
-        max-width: 700px;
-        margin: 28px auto 0;
-        padding: 25px;
+      .content-card .button {
+        margin-top: auto;
+      }
+
+      .contact-card {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 26px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: var(--surface);
+        box-shadow: var(--glow);
         text-align: center;
       }
 
-      .contact-box p {
-        margin: 10px 0;
+      .contact-card p {
+        margin: 8px 0;
         color: var(--muted);
         overflow-wrap: anywhere;
       }
 
-      .contact-box a {
+      .contact-card a {
         color: var(--cyan);
         text-decoration: underline;
-        text-decoration-color: rgba(102, 227, 255, 0.55);
-        text-underline-offset: 3px;
+        text-decoration-color: rgba(114, 227, 255, 0.45);
+        text-underline-offset: 4px;
       }
 
-      .contact-box a:hover {
-        text-shadow: 0 0 10px rgba(102, 227, 255, 0.75);
+      .contact-card a:hover {
+        text-shadow: 0 0 12px rgba(114, 227, 255, 0.6);
       }
 
       .site-footer {
         padding: 24px 0;
-        border-top: 1px solid var(--border);
+        border-top: 1px solid var(--line);
         color: var(--muted);
         text-align: center;
       }
 
+      .site-footer p {
+        margin: 0;
+        font-size: 0.9rem;
+      }
+
       @media (max-width: 760px) {
-        .hero-inner {
-          grid-template-columns: 1fr;
-        }
-
-        .hero {
-          padding: 62px 0;
-        }
-
-        .section {
-          padding: 62px 0;
-        }
-
         .nav {
           flex-direction: column;
           justify-content: center;
-          padding: 14px 0;
+          gap: 8px;
+          padding: 12px 0;
         }
 
         .menu {
-          gap: 10px 16px;
-          font-size: 0.92rem;
+          justify-content: center;
+          gap: 2px;
+        }
+
+        .menu a {
+          padding: 7px 9px;
+          font-size: 0.85rem;
+        }
+
+        .hero {
+          padding: 72px 0 64px;
+        }
+
+        .hero-inner {
+          grid-template-columns: 1fr;
+          gap: 34px;
+        }
+
+        .hero::after {
+          top: 40px;
+          right: -80px;
+          width: 220px;
+          height: 220px;
+        }
+
+        .profile-card {
+          max-width: 420px;
+          margin-inline: auto;
+        }
+
+        .section {
+          padding: 64px 0;
         }
       }
 
@@ -354,7 +523,10 @@
   <body>
     <header class="site-header">
       <div class="container nav">
-        <a class="logo" href="#" aria-label="김용겸 홈">YONGGYEOM</a>
+        <a class="logo" href="#" aria-label="김용겸 포트폴리오 홈">
+          YONGGYEOM
+        </a>
+
         <nav class="menu" aria-label="주요 메뉴">
           <a href="#about">소개</a>
           <a href="#skills">기술</a>
@@ -368,61 +540,86 @@
     <main>
       <section class="hero">
         <div class="container hero-inner">
-          <div class="hero-text">
-            <p class="badge">안녕하세요 👋</p>
-            <h1>웹 개발을 배우며 성장 중인 <span>김용겸</span>입니다.</h1>
-            <p class="lead">
-              송내고등학교에 다니고 있습니다. 새로운 것을 하나씩 배우고
-              직접 만들어 보며 나만의 기술 스택을 쌓아가고 있어요.
+          <div>
+            <p class="eyebrow">
+              <span class="status-dot" aria-hidden="true"></span>
+              배우고 만들며 성장 중
             </p>
-            <div class="hero-buttons">
-              <a class="primary-btn" href="#about">저를 소개합니다</a>
-              <a class="secondary-btn" href="#contact">연락하기</a>
+
+            <h1>안녕하세요,<br /><span>김용겸</span>입니다.</h1>
+
+            <p class="hero-description">
+              송내고등학교에 다니며 프로그래밍을 배우고 있어요.
+              새로운 아이디어를 프로젝트로 만들며 꾸준히 성장하고 있습니다.
+            </p>
+
+            <div class="hero-actions">
+              <a class="button button-primary" href="#projects">
+                프로젝트 보기
+              </a>
+              <a class="button button-secondary" href="#contact">
+                연락처 보기
+              </a>
             </div>
           </div>
 
-          <div class="profile-card">
+          <aside class="profile-card" aria-label="프로필">
+            <div class="profile-mark" aria-hidden="true">YK</div>
             <h2>김용겸</h2>
             <p>송내고등학교 학생</p>
-            <p>웹 개발을 배우는 중입니다.</p>
-          </div>
+            <p>AI를 활용해 프로젝트를 만들고 있습니다.</p>
+          </aside>
         </div>
       </section>
 
       <section id="about" class="section">
         <div class="container">
-          <h2 class="section-title">소개</h2>
-          <p class="section-text">
-            안녕하세요, 김용겸입니다. 현재 송내고등학교에 다니며 관심 있는
-            기술을 하나씩 배우고 있습니다. 꾸준히 배우고 직접 만들어 보면서
-            경험을 쌓아가려 합니다.
+          <div class="section-heading">
+            <p class="section-kicker">About me</p>
+            <h2 class="section-title">저를 <span>소개합니다</span></h2>
+          </div>
+          <p class="section-copy">
+            안녕하세요, 김용겸입니다. 관심 있는 기술을 배우고 직접 만들어
+            보면서 경험을 쌓고 있습니다. AI 도구도 활용해 아이디어를
+            구체화하고 프로젝트를 발전시키고 있어요.
           </p>
         </div>
       </section>
 
-      <section id="skills" class="section alt">
+      <section id="skills" class="section section-alt">
         <div class="container">
-          <h2 class="section-title">기술 스택</h2>
-          <p class="section-text">
+          <div class="section-heading">
+            <p class="section-kicker">Learning</p>
+            <h2 class="section-title"><span>기술</span> 스택</h2>
+          </div>
+          <p class="section-copy">
             현재 C언어와 Python을 병행하며 배우고 있습니다. 배운 내용을
-            직접 연습하고 작은 프로젝트에 적용하며 기술을 쌓아가고 있어요.
+            연습하고 작은 프로젝트에 적용하며 프로그래밍 기초를 쌓아가고 있어요.
           </p>
+          <div class="skill-list" aria-label="배우고 있는 기술">
+            <span class="skill-item">C 언어 · 학습 중</span>
+            <span class="skill-item">Python · 학습 중</span>
+          </div>
         </div>
       </section>
 
       <section id="projects" class="section">
         <div class="container">
-          <h2 class="section-title">프로젝트</h2>
+          <div class="section-heading">
+            <p class="section-kicker">Selected work</p>
+            <h2 class="section-title">진행한 <span>프로젝트</span></h2>
+          </div>
+
           <div class="project-grid">
-            <article class="project-card">
-              <div class="project-tag">공포 게임</div>
+            <article class="content-card">
+              <span class="project-tag">공포 게임</span>
               <h3>Last Patrol</h3>
               <p>
                 송내고등학교 AI 활용 웹 프로그래밍 개발자 프로그램에서
                 AI와 함께 만든 첫 게임입니다.
               </p>
               <a
-                class="primary-btn"
+                class="button button-primary"
                 href="https://mywave-space.web.app/last-patrol-v112-beta"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -430,16 +627,37 @@
                 게임 플레이하기
               </a>
             </article>
+
+            <article class="content-card">
+              <span class="project-tag">진행 중인 프로젝트</span>
+              <h3>Only K-pop Rhythm Game</h3>
+              <p>
+                K-pop 리듬게임을 제작 중입니다. 프로젝트를 계속 발전시키며
+                게임 개발 경험을 쌓고 있습니다.
+              </p>
+              <a
+                class="button button-primary"
+                href="https://friendly-boy.github.io/Only-K-pop-only-k-pop-Rhythm-game-/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                게임 보러가기
+              </a>
+            </article>
           </div>
         </div>
       </section>
 
-      <section id="activities" class="section alt">
+      <section id="activities" class="section section-alt">
         <div class="container">
-          <h2 class="section-title">활동</h2>
-          <div class="project-grid">
-            <article class="project-card">
-              <div class="project-tag">참가 예정 · 2026년 11월 14–15일</div>
+          <div class="section-heading">
+            <p class="section-kicker">Activities</p>
+            <h2 class="section-title">활동 및 <span>계획</span></h2>
+          </div>
+
+          <div class="activity-grid">
+            <article class="content-card">
+              <span class="project-tag">참가 예정 · 2026년 11월 14–15일</span>
               <h3>NASA Space Apps</h3>
               <p>
                 송내고등학교 알파 동아리 인원 6명과 함께 NASA Space Apps
@@ -447,9 +665,9 @@
               </p>
             </article>
 
-            <article class="project-card">
-              <div class="project-tag">준비 기간 · 2027년 1–2월</div>
-              <h3>정보기기운용기능사 자격증 준비</h3>
+            <article class="content-card">
+              <span class="project-tag">준비 예정 · 2027년 1–2월</span>
+              <h3>정보기기운용기능사 자격증</h3>
               <p>
                 2027년 1월부터 2월까지 정보기기운용기능사 자격증 취득을
                 목표로 준비할 예정입니다.
@@ -459,10 +677,14 @@
         </div>
       </section>
 
-      <section id="contact" class="section contact">
+      <section id="contact" class="section">
         <div class="container">
-          <h2 class="section-title">연락처</h2>
-          <div class="contact-box">
+          <div class="section-heading">
+            <p class="section-kicker">Contact</p>
+            <h2 class="section-title"><span>연락</span>하기</h2>
+          </div>
+
+          <div class="contact-card">
             <p>
               이메일:
               <a href="mailto:friendlydeveloperlove@gmail.com">

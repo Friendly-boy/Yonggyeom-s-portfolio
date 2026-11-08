@@ -15,7 +15,6 @@
         color-scheme: dark;
         --background: #070b16;
         --surface: rgba(13, 22, 42, 0.82);
-        --surface-strong: #0e1930;
         --text: #edf6ff;
         --muted: #a4b5cd;
         --blue: #4aa8ff;
@@ -134,9 +133,11 @@
 
       .hero {
         position: relative;
+        isolation: isolate;
         padding: 110px 0 92px;
       }
 
+      /* 회전하는 네온 원형 장식 */
       .hero::after {
         position: absolute;
         z-index: -1;
@@ -144,13 +145,31 @@
         right: max(4%, calc((100% - var(--content-width)) / 2));
         width: 280px;
         height: 280px;
-        border: 1px solid rgba(75, 171, 255, 0.12);
+        border: 2px solid transparent;
         border-radius: 50%;
+        background:
+          linear-gradient(rgba(7, 11, 22, 0.18), rgba(7, 11, 22, 0.18))
+            padding-box,
+          conic-gradient(
+              from 0deg,
+              transparent 0 65%,
+              var(--cyan) 78%,
+              var(--blue) 90%,
+              transparent 100%
+            )
+            border-box;
         box-shadow:
           0 0 70px rgba(42, 128, 255, 0.12),
           inset 0 0 50px rgba(42, 128, 255, 0.08);
         content: "";
         pointer-events: none;
+        animation: neon-orbit 8s linear infinite;
+      }
+
+      @keyframes neon-orbit {
+        to {
+          transform: rotate(360deg);
+        }
       }
 
       .hero-inner {
@@ -516,6 +535,10 @@
           scroll-behavior: auto !important;
           transition-duration: 0.01ms !important;
         }
+
+        .hero::after {
+          animation: none;
+        }
       }
     </style>
   </head>
@@ -708,7 +731,7 @@
 
     <footer class="site-footer">
       <div class="container">
-        <p> 김용겸</p>
+        <p>© 2026 김용겸</p>
       </div>
     </footer>
   </body>

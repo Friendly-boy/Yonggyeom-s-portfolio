@@ -5,21 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="AI와 함께 웹 프로젝트를 만들고 C언어와 Python을 배우는 김용겸의 포트폴리오입니다."
+      content="프로그래밍을 배우고 프로젝트를 만드는 김용겸의 포트폴리오입니다."
     />
-    <meta name="theme-color" content="#070b16" />
-    <title>김용겸 | 개발 포트폴리오</title>
+    <meta name="theme-color" content="#090a0d" />
+    <title>김용겸 | 포트폴리오</title>
 
     <style>
       :root {
         color-scheme: dark;
-        --text: #edf6ff;
-        --muted: #a4b5cd;
-        --blue: #4aa8ff;
-        --cyan: #72e3ff;
-        --line: rgba(83, 176, 255, 0.28);
-        --glow: 0 0 24px rgba(48, 147, 255, 0.16);
-        --content-width: 1080px;
+        --background: #090a0d;
+        --surface: #111318;
+        --surface-soft: #15171c;
+        --text: #f3f4f6;
+        --muted: #a4a8b0;
+        --white: #ffffff;
+        --line: #303238;
+        --content-width: 1040px;
       }
 
       *,
@@ -30,7 +31,7 @@
 
       html {
         scroll-behavior: smooth;
-        scroll-padding-top: 90px;
+        scroll-padding-top: 76px;
       }
 
       body {
@@ -39,28 +40,9 @@
         margin: 0;
         overflow-x: hidden;
         color: var(--text);
-        background:
-          radial-gradient(
-            ellipse at 50% -15%,
-            rgba(27, 105, 194, 0.3),
-            transparent 52%
-          ),
-          linear-gradient(180deg, #070b16, #090f1d 55%, #070b16);
+        background: var(--background);
         font-family: Arial, "Noto Sans KR", sans-serif;
         line-height: 1.7;
-      }
-
-      body::before {
-        position: fixed;
-        z-index: -1;
-        background-image:
-          linear-gradient(rgba(99, 174, 255, 0.035) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(99, 174, 255, 0.035) 1px, transparent 1px);
-        background-size: 44px 44px;
-        content: "";
-        inset: 0;
-        mask-image: linear-gradient(to bottom, black, transparent 80%);
-        pointer-events: none;
       }
 
       a {
@@ -69,304 +51,238 @@
       }
 
       a:focus-visible {
-        outline: 2px solid var(--cyan);
-        outline-offset: 5px;
-        border-radius: 6px;
+        outline: 2px solid var(--white);
+        outline-offset: 4px;
       }
 
       .container {
         width: min(var(--content-width), calc(100% - 40px));
-        margin-inline: auto;
+        margin: 0 auto;
       }
 
       /* 상단 메뉴 */
       .site-header {
         position: sticky;
-        z-index: 20;
+        z-index: 10;
         top: 0;
         border-bottom: 1px solid var(--line);
-        background: rgba(7, 11, 22, 0.84);
-        backdrop-filter: blur(16px);
+        background: rgba(9, 10, 13, 0.96);
       }
 
       .nav {
         display: flex;
-        min-height: 72px;
+        min-height: 68px;
         align-items: center;
         justify-content: space-between;
-        gap: 24px;
+        gap: 20px;
       }
 
       .logo {
-        color: var(--cyan);
-        font-size: 1.08rem;
-        font-weight: 900;
-        letter-spacing: 0.16em;
-        text-shadow: 0 0 18px rgba(114, 227, 255, 0.55);
-        animation: logo-glow 3s ease-in-out infinite alternate;
+        color: var(--white);
+        font-size: 1rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
       }
 
       .menu {
         display: flex;
         flex-wrap: wrap;
-        align-items: center;
-        justify-content: flex-end;
-        gap: 8px;
+        gap: 6px;
       }
 
       .menu a {
-        padding: 8px 12px;
-        border-radius: 8px;
+        padding: 8px 11px;
+        border-radius: 7px;
         color: var(--muted);
-        font-size: 0.92rem;
-        transition:
-          color 0.2s ease,
-          background 0.2s ease,
-          text-shadow 0.2s ease;
+        font-size: 0.9rem;
+        transition: color 0.18s ease, background 0.18s ease;
       }
 
       .menu a:hover {
-        color: var(--cyan);
-        background: rgba(59, 152, 255, 0.1);
-        text-shadow: 0 0 12px rgba(114, 227, 255, 0.6);
+        color: var(--white);
+        background: #1b1d22;
       }
 
       /* 첫 화면 */
       .hero {
         position: relative;
-        isolation: isolate;
-        padding: 110px 0 92px;
+        overflow: hidden;
+        padding: 100px 0 86px;
+        border-bottom: 1px solid var(--line);
+        background: #0c0d10;
       }
 
-      /* 첫 화면의 회전 네온 원 */
       .hero::after {
         position: absolute;
-        z-index: -1;
-        top: 80px;
-        right: max(4%, calc((100% - var(--content-width)) / 2));
-        width: 280px;
-        height: 280px;
-        border: 2px solid transparent;
+        top: 50px;
+        right: max(5%, calc((100% - var(--content-width)) / 2));
+        width: 250px;
+        height: 250px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 50%;
-        background:
-          linear-gradient(rgba(7, 11, 22, 0.18), rgba(7, 11, 22, 0.18))
-            padding-box,
-          conic-gradient(
-              from 0deg,
-              transparent 0 65%,
-              var(--cyan) 78%,
-              var(--blue) 90%,
-              transparent 100%
-            )
-            border-box;
-        box-shadow:
-          0 0 70px rgba(42, 128, 255, 0.12),
-          inset 0 0 50px rgba(42, 128, 255, 0.08);
         content: "";
         pointer-events: none;
-        animation: neon-orbit 8s linear infinite;
       }
 
       .hero-inner {
+        position: relative;
+        z-index: 1;
         display: grid;
-        grid-template-columns: minmax(0, 1.45fr) minmax(250px, 0.75fr);
+        grid-template-columns: minmax(0, 1.4fr) minmax(240px, 0.7fr);
         align-items: center;
-        gap: 58px;
-      }
-
-      .eyebrow,
-      .project-tag {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        border: 1px solid var(--line);
-        border-radius: 999px;
-        color: var(--cyan);
-        background: rgba(37, 115, 199, 0.12);
-        font-size: 0.84rem;
-        font-weight: 700;
+        gap: 48px;
       }
 
       .eyebrow {
-        margin: 0 0 20px;
-        padding: 7px 13px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0 0 18px;
+        padding: 5px 11px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        color: #e4e6e9;
+        background: #15171b;
+        font-size: 0.84rem;
       }
 
       .status-dot {
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        background: #64f0ba;
-        box-shadow: 0 0 12px rgba(100, 240, 186, 0.8);
-        animation: status-pulse 1.8s ease-in-out infinite;
+        background: #d7d9dc;
+        animation: status-pulse 2s ease-in-out infinite;
       }
 
       .hero h1 {
-        max-width: 720px;
         margin: 0;
-        font-size: clamp(2.6rem, 7vw, 5rem);
-        letter-spacing: -0.055em;
-        line-height: 1.1;
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        letter-spacing: -0.045em;
+        line-height: 1.12;
       }
 
-      .hero h1 span {
-        color: var(--cyan);
-        text-shadow: 0 0 28px rgba(67, 183, 255, 0.42);
-        animation: text-glow 3s ease-in-out infinite alternate;
+      .hero h1 span,
+      .section-title span {
+        color: var(--white);
       }
 
       .hero-description {
-        max-width: 650px;
-        margin: 22px 0 0;
+        max-width: 620px;
+        margin: 20px 0 0;
         color: var(--muted);
-        font-size: 1.08rem;
+        font-size: 1.05rem;
       }
 
       .hero-actions {
         display: flex;
         flex-wrap: wrap;
-        gap: 13px;
-        margin-top: 30px;
+        gap: 11px;
+        margin-top: 27px;
       }
 
-      /* 버튼 */
       .button {
         display: inline-flex;
-        min-height: 46px;
+        min-height: 43px;
         align-items: center;
         justify-content: center;
-        padding: 10px 18px;
-        border: 1px solid var(--blue);
-        border-radius: 10px;
-        font-weight: 800;
+        padding: 9px 16px;
+        border: 1px solid #555960;
+        border-radius: 8px;
+        font-size: 0.92rem;
+        font-weight: 700;
         transition:
-          transform 0.2s ease,
-          box-shadow 0.2s ease,
-          background 0.2s ease;
+          background 0.18s ease,
+          border-color 0.18s ease,
+          transform 0.18s ease;
       }
 
       .button:hover {
         transform: translateY(-2px);
-        box-shadow:
-          0 0 18px rgba(57, 169, 255, 0.4),
-          0 0 36px rgba(57, 169, 255, 0.13);
+        border-color: #c5c8cd;
       }
 
       .button-primary {
-        color: #04111e;
-        background: linear-gradient(135deg, var(--cyan), var(--blue));
-        box-shadow: 0 0 18px rgba(57, 169, 255, 0.25);
-        animation: button-glow 3s ease-in-out infinite alternate;
+        border-color: var(--white);
+        color: #111318;
+        background: var(--white);
+      }
+
+      .button-primary:hover {
+        background: #dedfe2;
       }
 
       .button-secondary {
-        color: var(--cyan);
-        background: rgba(9, 20, 40, 0.82);
+        color: var(--text);
+        background: #15171c;
       }
 
-      /* 프로필 카드 */
-      .profile-card,
-      .content-card {
-        border: 1px solid var(--line);
-        background: linear-gradient(
-          145deg,
-          rgba(16, 29, 54, 0.95),
-          rgba(8, 15, 30, 0.95)
-        );
-        box-shadow: var(--glow);
-      }
-
+      /* 프로필 */
       .profile-card {
-        position: relative;
-        padding: 30px;
-        overflow: hidden;
-        border-radius: 22px;
+        padding: 26px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--surface);
         text-align: center;
-      }
-
-      .profile-card::before {
-        position: absolute;
-        top: -60px;
-        left: 50%;
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        background: rgba(56, 160, 255, 0.16);
-        content: "";
-        filter: blur(35px);
-        transform: translateX(-50%);
-        animation: profile-light 4s ease-in-out infinite alternate;
+        animation: card-float 5s ease-in-out infinite;
       }
 
       .profile-mark {
-        position: relative;
         display: grid;
-        width: 82px;
-        height: 82px;
-        margin: 0 auto 18px;
+        width: 70px;
+        height: 70px;
+        margin: 0 auto 15px;
         place-items: center;
-        border: 1px solid rgba(114, 227, 255, 0.65);
-        border-radius: 24px;
-        color: var(--cyan);
-        background: rgba(30, 111, 190, 0.16);
-        box-shadow:
-          0 0 24px rgba(57, 169, 255, 0.22),
-          inset 0 0 20px rgba(57, 169, 255, 0.1);
-        font-size: 1.7rem;
-        font-weight: 900;
-        animation: profile-mark-glow 3s ease-in-out infinite alternate;
+        border: 1px solid #52555c;
+        border-radius: 20px;
+        color: var(--white);
+        background: #1b1d22;
+        font-size: 1.4rem;
+        font-weight: 800;
       }
 
       .profile-card h2 {
-        position: relative;
-        margin: 0 0 5px;
-        font-size: 1.45rem;
+        margin: 0 0 4px;
+        font-size: 1.3rem;
       }
 
       .profile-card p {
-        position: relative;
         margin: 4px 0;
         color: var(--muted);
+        font-size: 0.94rem;
       }
 
-      /* 섹션 */
+      /* 공통 섹션 */
       .section {
-        padding: 82px 0;
+        padding: 76px 0;
       }
 
       .section-alt {
-        border-block: 1px solid rgba(83, 176, 255, 0.13);
-        background: rgba(9, 18, 35, 0.48);
+        border-block: 1px solid var(--line);
+        background: #0e1014;
       }
 
       .section-heading {
-        margin-bottom: 34px;
+        margin-bottom: 28px;
         text-align: center;
       }
 
       .section-kicker {
-        margin: 0 0 6px;
-        color: var(--blue);
-        font-size: 0.78rem;
-        font-weight: 800;
-        letter-spacing: 0.2em;
+        margin: 0 0 5px;
+        color: #b7bbc2;
+        font-size: 0.76rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
         text-transform: uppercase;
       }
 
       .section-title {
         margin: 0;
-        color: var(--text);
-        font-size: clamp(1.9rem, 4vw, 2.7rem);
-        letter-spacing: -0.035em;
-      }
-
-      .section-title span {
-        color: var(--cyan);
-        text-shadow: 0 0 18px rgba(57, 169, 255, 0.35);
+        font-size: clamp(1.8rem, 4vw, 2.45rem);
+        letter-spacing: -0.03em;
       }
 
       .section-copy {
-        max-width: 760px;
+        max-width: 740px;
         margin: 0 auto;
         color: var(--muted);
         text-align: center;
@@ -377,76 +293,71 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 12px;
-        margin-top: 26px;
+        gap: 10px;
+        margin-top: 22px;
       }
 
       .skill-item {
-        padding: 9px 16px;
+        padding: 7px 13px;
         border: 1px solid var(--line);
-        border-radius: 10px;
-        color: var(--cyan);
-        background: rgba(25, 74, 124, 0.2);
-        font-weight: 700;
-        animation: skill-glow 3.5s ease-in-out infinite alternate;
+        border-radius: 7px;
+        color: #e5e7eb;
+        background: var(--surface);
+        font-size: 0.9rem;
+        animation: skill-lift 3.5s ease-in-out infinite;
       }
 
       .skill-item:nth-child(2) {
-        animation-delay: 0.7s;
+        animation-delay: 0.45s;
       }
 
-      /* 프로젝트와 활동 카드 */
+      /* 프로젝트 및 활동 */
       .project-grid,
       .activity-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-        gap: 22px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
       }
 
       .content-card {
         position: relative;
         display: flex;
-        min-height: 100%;
+        min-height: 220px;
         flex-direction: column;
         align-items: flex-start;
-        padding: 26px;
+        padding: 24px;
         overflow: hidden;
-        border-radius: 18px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--surface);
+        isolation: isolate;
         transition:
-          transform 0.22s ease,
-          border-color 0.22s ease,
-          box-shadow 0.22s ease;
-        animation: card-glow 4s ease-in-out infinite alternate;
+          border-color 0.18s ease,
+          transform 0.18s ease,
+          background 0.18s ease;
       }
 
       /*
-        카드 테두리의 네온 빛이 카드 바깥을 따라 회전합니다.
-        마스크로 가운데를 비워 테두리 부분만 보이게 합니다.
+        흰색 반사광이 카드 위를 대각선으로 지나갑니다.
+        회전하지 않으며 4초마다 반복됩니다.
       */
       .content-card::before {
         position: absolute;
         z-index: 0;
-        inset: 0;
-        padding: 1px;
-        border-radius: inherit;
-        background: conic-gradient(
-          from 0deg,
-          transparent 0deg 285deg,
-          var(--cyan) 315deg,
-          var(--blue) 335deg,
-          transparent 360deg
+        top: -50%;
+        bottom: -50%;
+        left: 0;
+        width: 38%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
         );
         content: "";
         pointer-events: none;
-        -webkit-mask:
-          linear-gradient(#fff 0 0) content-box,
-          linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask:
-          linear-gradient(#fff 0 0) content-box,
-          linear-gradient(#fff 0 0);
-        mask-composite: exclude;
-        animation: card-border-spin 5s linear infinite;
+        transform: translate3d(-180%, 0, 0) skewX(-24deg);
+        animation: card-sheen 4s ease-in-out infinite;
       }
 
       .content-card > * {
@@ -455,30 +366,32 @@
       }
 
       .content-card:hover {
-        transform: translateY(-5px);
-        border-color: rgba(114, 227, 255, 0.6);
-        box-shadow:
-          0 0 22px rgba(57, 169, 255, 0.24),
-          0 16px 42px rgba(0, 0, 0, 0.2);
-        animation-play-state: paused;
+        transform: translateY(-3px);
+        border-color: #656970;
+        background: #15171c;
       }
 
       .project-tag {
-        margin-bottom: 16px;
-        padding: 5px 11px;
+        display: inline-block;
+        margin-bottom: 13px;
+        padding: 4px 9px;
+        border: 1px solid #45484f;
+        border-radius: 999px;
+        color: #e4e6e9;
+        background: #191b20;
         font-size: 0.78rem;
-        animation: tag-glow 3s ease-in-out infinite alternate;
       }
 
       .content-card h3 {
-        margin: 0 0 9px;
-        font-size: 1.35rem;
-        line-height: 1.35;
+        margin: 0 0 8px;
+        font-size: 1.2rem;
+        line-height: 1.4;
       }
 
       .content-card p {
-        margin: 0 0 20px;
+        margin: 0 0 19px;
         color: var(--muted);
+        font-size: 0.94rem;
       }
 
       .content-card .button {
@@ -487,133 +400,94 @@
 
       /* 연락처 */
       .contact-card {
-        max-width: 720px;
+        max-width: 700px;
         margin: 0 auto;
-        padding: 26px;
+        padding: 22px;
         border: 1px solid var(--line);
-        border-radius: 18px;
-        background: rgba(13, 22, 42, 0.82);
-        box-shadow: var(--glow);
-        animation: card-glow 4s ease-in-out infinite alternate;
+        border-radius: 12px;
+        background: var(--surface);
+        text-align: center;
       }
 
       .contact-card p {
-        margin: 8px 0;
+        margin: 7px 0;
         color: var(--muted);
         overflow-wrap: anywhere;
       }
 
       .contact-card a {
-        color: var(--cyan);
+        color: var(--white);
         text-decoration: underline;
-        text-decoration-color: rgba(114, 227, 255, 0.45);
+        text-decoration-color: #777b83;
         text-underline-offset: 4px;
-      }
-
-      .contact-card a:hover {
-        text-shadow: 0 0 12px rgba(114, 227, 255, 0.6);
       }
 
       /* 하단 */
       .site-footer {
-        padding: 24px 0;
+        padding: 22px 0;
         border-top: 1px solid var(--line);
         color: var(--muted);
         text-align: center;
+        font-size: 0.88rem;
       }
 
       .site-footer p {
         margin: 0;
-        font-size: 0.9rem;
       }
 
-      /* 애니메이션 */
-      @keyframes neon-orbit {
-        to {
-          transform: rotate(360deg);
+      /* 반사광 애니메이션 */
+      @keyframes card-sheen {
+        0%,
+        15% {
+          transform: translate3d(-180%, 0, 0) skewX(-24deg);
         }
-      }
 
-      @keyframes card-border-spin {
-        to {
-          transform: rotate(360deg);
+        65%,
+        100% {
+          transform: translate3d(420%, 0, 0) skewX(-24deg);
         }
       }
 
       @keyframes status-pulse {
         50% {
-          opacity: 0.55;
-          box-shadow: 0 0 4px rgba(100, 240, 186, 0.35);
+          opacity: 0.4;
+          transform: scale(0.8);
         }
       }
 
-      @keyframes logo-glow {
-        to {
-          text-shadow:
-            0 0 8px rgba(114, 227, 255, 0.75),
-            0 0 25px rgba(74, 168, 255, 0.45);
+      @keyframes card-float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+
+        50% {
+          transform: translateY(-4px);
         }
       }
 
-      @keyframes text-glow {
-        to {
-          text-shadow:
-            0 0 16px rgba(67, 183, 255, 0.55),
-            0 0 34px rgba(67, 183, 255, 0.28);
+      @keyframes skill-lift {
+        0%,
+        100% {
+          transform: translateY(0);
         }
-      }
 
-      @keyframes button-glow {
-        to {
-          box-shadow:
-            0 0 24px rgba(57, 169, 255, 0.42),
-            0 0 42px rgba(57, 169, 255, 0.16);
-        }
-      }
-
-      @keyframes profile-light {
-        to {
-          opacity: 0.65;
-          transform: translateX(-50%) scale(1.25);
-        }
-      }
-
-      @keyframes profile-mark-glow {
-        to {
-          box-shadow:
-            0 0 32px rgba(57, 169, 255, 0.42),
-            inset 0 0 24px rgba(57, 169, 255, 0.18);
-        }
-      }
-
-      @keyframes skill-glow {
-        to {
-          border-color: rgba(114, 227, 255, 0.55);
-          box-shadow: 0 0 16px rgba(57, 169, 255, 0.2);
-        }
-      }
-
-      @keyframes card-glow {
-        to {
-          box-shadow:
-            0 0 30px rgba(48, 147, 255, 0.24),
-            0 0 48px rgba(48, 147, 255, 0.08);
-        }
-      }
-
-      @keyframes tag-glow {
-        to {
-          box-shadow: 0 0 18px rgba(57, 169, 255, 0.26);
+        50% {
+          transform: translateY(-3px);
         }
       }
 
       /* 모바일 */
       @media (max-width: 760px) {
+        .container {
+          width: min(100% - 32px, var(--content-width));
+        }
+
         .nav {
+          min-height: auto;
           flex-direction: column;
-          justify-content: center;
-          gap: 8px;
-          padding: 12px 0;
+          gap: 6px;
+          padding: 10px 0;
         }
 
         .menu {
@@ -622,42 +496,63 @@
         }
 
         .menu a {
-          padding: 7px 9px;
-          font-size: 0.85rem;
+          padding: 6px 8px;
+          font-size: 0.84rem;
         }
 
         .hero {
-          padding: 72px 0 64px;
+          padding: 64px 0 56px;
+        }
+
+        .hero::after {
+          top: 35px;
+          right: -120px;
+          width: 190px;
+          height: 190px;
         }
 
         .hero-inner {
           grid-template-columns: 1fr;
-          gap: 34px;
+          gap: 28px;
         }
 
-        .hero::after {
-          top: 40px;
-          right: -80px;
-          width: 220px;
-          height: 220px;
+        .hero h1 {
+          font-size: clamp(2.35rem, 11vw, 3.5rem);
         }
 
         .profile-card {
           max-width: 420px;
-          margin-inline: auto;
         }
 
         .section {
-          padding: 64px 0;
+          padding: 56px 0;
+        }
+
+        .project-grid,
+        .activity-grid {
+          grid-template-columns: 1fr;
+          gap: 14px;
+        }
+
+        .content-card {
+          min-height: 0;
+          padding: 21px;
+        }
+
+        .content-card::before {
+          animation-duration: 4s;
         }
       }
 
-      /* 방문자가 움직임 줄이기를 설정한 경우 애니메이션 끄기 */
+      /* 움직임 줄이기 설정을 사용하는 방문자 배려 */
       @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
         *,
         *::before,
         *::after {
-          scroll-behavior: auto !important;
           animation-duration: 0.01ms !important;
           animation-iteration-count: 1 !important;
           transition-duration: 0.01ms !important;
@@ -689,14 +584,14 @@
           <div>
             <p class="eyebrow">
               <span class="status-dot" aria-hidden="true"></span>
-              배우고 만들며 성장 중
+              프로그래밍을 배우며 성장 중
             </p>
 
             <h1>안녕하세요,<br /><span>김용겸</span>입니다.</h1>
 
             <p class="hero-description">
               송내고등학교에 다니며 프로그래밍을 배우고 있어요.
-              새로운 아이디어를 프로젝트로 만들며 꾸준히 성장하고 있습니다.
+              새로운 아이디어를 프로젝트로 만들며 경험을 쌓고 있습니다.
             </p>
 
             <div class="hero-actions">
@@ -713,7 +608,7 @@
             <div class="profile-mark" aria-hidden="true">YK</div>
             <h2>김용겸</h2>
             <p>송내고등학교 학생</p>
-            <p>AI를 활용해 프로젝트를 만들고 있습니다.</p>
+            <p>AI 도구를 활용해 프로젝트를 만들고 있습니다.</p>
           </aside>
         </div>
       </section>
@@ -725,9 +620,8 @@
             <h2 class="section-title">저를 <span>소개합니다</span></h2>
           </div>
           <p class="section-copy">
-            안녕하세요, 김용겸입니다. 관심 있는 기술을 배우고 직접 만들어
-            보면서 경험을 쌓고 있습니다. AI 도구도 활용해 아이디어를
-            구체화하고 프로젝트를 발전시키고 있어요.
+            관심 있는 기술을 배우고 직접 만들어 보면서 경험을 쌓고 있습니다.
+            AI 도구도 활용해 아이디어를 구체화하고 프로젝트를 발전시키고 있어요.
           </p>
         </div>
       </section>
@@ -752,8 +646,8 @@
       <section id="projects" class="section">
         <div class="container">
           <div class="section-heading">
-            <p class="section-kicker">Selected work</p>
-            <h2 class="section-title">진행한 <span>프로젝트</span></h2>
+            <p class="section-kicker">Projects</p>
+            <h2 class="section-title">만든 <span>프로젝트</span></h2>
           </div>
 
           <div class="project-grid">
@@ -778,7 +672,7 @@
               <span class="project-tag">진행 중인 프로젝트</span>
               <h3>Only K-pop Rhythm Game</h3>
               <p>
-                K-pop 리듬게임을 제작 중입니다. 프로젝트를 계속 발전시키며
+                K-pop 리듬게임을 제작 중입니다. 기능을 계속 다듬으며
                 게임 개발 경험을 쌓고 있습니다.
               </p>
               <a
@@ -854,7 +748,7 @@
 
     <footer class="site-footer">
       <div class="container">
-        <p> 김용겸</p>
+        <p>© 2026 김용겸</p>
       </div>
     </footer>
   </body>

@@ -60,7 +60,6 @@
         margin: 0 auto;
       }
 
-      /* 상단 메뉴 */
       .site-header {
         position: sticky;
         z-index: 10;
@@ -103,7 +102,6 @@
         background: #1b1d22;
       }
 
-      /* 첫 화면 */
       .hero {
         position: relative;
         overflow: hidden;
@@ -216,7 +214,6 @@
         background: #15171c;
       }
 
-      /* 프로필 */
       .profile-card {
         padding: 26px;
         border: 1px solid var(--line);
@@ -251,7 +248,6 @@
         font-size: 0.94rem;
       }
 
-      /* 공통 섹션 */
       .section {
         padding: 76px 0;
       }
@@ -288,7 +284,6 @@
         text-align: center;
       }
 
-      /* 기술 */
       .skill-list {
         display: flex;
         flex-wrap: wrap;
@@ -311,7 +306,6 @@
         animation-delay: 0.45s;
       }
 
-      /* 프로젝트 및 활동 */
       .project-grid,
       .activity-grid {
         display: grid;
@@ -337,10 +331,6 @@
           background 0.18s ease;
       }
 
-      /*
-        흰색 반사광이 카드 위를 대각선으로 지나갑니다.
-        회전하지 않으며 4초마다 반복됩니다.
-      */
       .content-card::before {
         position: absolute;
         z-index: 0;
@@ -398,7 +388,6 @@
         margin-top: auto;
       }
 
-      /* 연락처 */
       .contact-card {
         max-width: 700px;
         margin: 0 auto;
@@ -422,7 +411,6 @@
         text-underline-offset: 4px;
       }
 
-      /* 하단 */
       .site-footer {
         padding: 22px 0;
         border-top: 1px solid var(--line);
@@ -435,7 +423,6 @@
         margin: 0;
       }
 
-      /* 반사광 애니메이션 */
       @keyframes card-sheen {
         0%,
         15% {
@@ -477,7 +464,6 @@
         }
       }
 
-      /* 모바일 */
       @media (max-width: 760px) {
         .container {
           width: min(100% - 32px, var(--content-width));
@@ -544,7 +530,6 @@
         }
       }
 
-      /* 움직임 줄이기 설정을 사용하는 방문자 배려 */
       @media (prefers-reduced-motion: reduce) {
         html {
           scroll-behavior: auto;
@@ -665,23 +650,6 @@
                 rel="noopener noreferrer"
               >
                 게임 플레이하기
-              </a>
-            </article>
-
-            <article class="content-card">
-              <span class="project-tag">진행 중인 프로젝트</span>
-              <h3>Only K-pop Rhythm Game</h3>
-              <p>
-                K-pop 리듬게임을 제작 중입니다. 기능을 계속 다듬으며
-                게임 개발 경험을 쌓고 있습니다.
-              </p>
-              <a
-                class="button button-primary"
-                href="https://friendly-boy.github.io/Only-K-pop-only-k-pop-Rhythm-game-/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                게임 보러가기
               </a>
             </article>
           </div>
